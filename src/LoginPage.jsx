@@ -36,10 +36,17 @@ export default function LoginPage() {
     setAlert(null)
 
     try {
-      const { data } = await authService.login(form)
+      // 💡 Se declara el payload traduciendo 'email' a 'username' para Spring
+      const payload = {
+        username: form.email,
+        password: form.password
+      }
+
+      const { data } = await authService.login(payload)
       login(data)
       navigate('/home')
     } catch (err) {
+      console.error("El error real atrapado es:", err);
       const msg = err.response?.data?.message || 'Credenciales incorrectas'
       setAlert({ type: 'error', text: msg })
     } finally {

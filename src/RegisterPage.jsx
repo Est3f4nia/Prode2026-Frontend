@@ -40,13 +40,14 @@ export default function RegisterPage() {
 
     try {
       const { data } = await authService.register({
-        username: form.nombre,
+        username: form.email,
         email: form.email,
         password: form.password,
       })
       login(data)
       navigate('/home')
     } catch (err) {
+      console.error("El error real atrapado es:", err);
       const msg = err.response?.data?.message || 'Error al registrar el usuario'
       setAlert({ type: 'error', text: msg })
     } finally {
