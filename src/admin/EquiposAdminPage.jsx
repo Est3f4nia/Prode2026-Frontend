@@ -40,9 +40,13 @@ export default function EquiposAdminPage() {
     try {
       await createEquipo(form);
       setSuccess(`Equipo "${form.nombre}" creado correctamente.`);
-      setForm({ nombre: "", pais: "", escudoUrl: "" });
+      setForm({ nombre: "", escudoUrl: "" }); 
+      
       cargarEquipos();
     } catch (err) {
+      
+      console.error("🔥 Error desde Spring Boot:", err.response?.data || err.message);
+    
       const msg = err.response?.data?.message;
       if (err.response?.status === 409) {
         setError(msg || "Ya existe un equipo con ese nombre.");
@@ -96,15 +100,7 @@ export default function EquiposAdminPage() {
             maxLength={50}
             className="input-field"
           />
-          <input
-            type="text"
-            name="pais"
-            placeholder="País"
-            value={form.pais}
-            onChange={handleChange}
-            maxLength={50}
-            className="input-field"
-          />
+          
           <input
             type="text"
             name="escudoUrl"
@@ -135,7 +131,6 @@ export default function EquiposAdminPage() {
                 <th>#</th>
                 <th>Escudo</th>
                 <th>Nombre</th>
-                <th>País</th>
                 <th>Acción</th>
               </tr>
             </thead>
@@ -151,7 +146,6 @@ export default function EquiposAdminPage() {
                     )}
                   </td>
                   <td>{eq.nombre}</td>
-                  <td>{eq.pais || "—"}</td>
                   <td>
                     <button
                       className="btn-eliminar"
