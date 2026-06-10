@@ -53,7 +53,6 @@ export default function LoginPage() {
       <div className="auth-divider" />
 
       <div className="auth-right">
-        <div className="auth-right-bg" />
         <div className="auth-form-wrapper">
           <div className="form-header">
             <div className="form-eyebrow">Acceso a la plataforma</div>

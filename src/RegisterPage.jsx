@@ -60,7 +60,6 @@ export default function RegisterPage() {
       <div className="auth-divider" />
 
       <div className="auth-right">
-        <div className="auth-right-bg" />
         <div className="auth-form-wrapper">
           <div className="form-header">
             <div className="form-eyebrow">Unite al prode</div>

@@ -27,22 +27,21 @@ export default function AuthLeft() {
           <div className="trophy-emoji" style={{ display: 'none' }}>🏆</div>
         </div>
 
-        {/* Logo FIFA 2026 */}
-        <img
-          src="/logo2026.png"
-          alt="FIFA World Cup 2026"
-          className="fifa-logo"
-          onError={(e) => { e.target.style.display = 'none' }}
-        />
 
         {/* Brand title */}
         <div className="brand-title">PRODE</div>
 
         {/* Flags */}
         <div className="flags-row">
-          {['🇺🇸', '🇨🇦', '🇲🇽', '🇦🇷', '🇧🇷', '🇩🇪', '🇪🇸', '🇫🇷'].map((flag) => (
-            <span key={flag} className="flag-chip">{flag}</span>
-          ))}
+          <span className="flag-chip" title="Estados Unidos">
+            <img src="https://flagcdn.com/w40/us.png" alt="USA" style={{ width: '28px', borderRadius: '4px', display: 'block' }} />
+          </span>
+          <span className="flag-chip" title="Canadá">
+            <img src="https://flagcdn.com/w40/ca.png" alt="Canadá" style={{ width: '28px', borderRadius: '4px', display: 'block' }} />
+          </span>
+          <span className="flag-chip" title="México">
+            <img src="https://flagcdn.com/w40/mx.png" alt="México" style={{ width: '28px', borderRadius: '4px', display: 'block' }} />
+          </span>
         </div>
       </div>
     </div>
