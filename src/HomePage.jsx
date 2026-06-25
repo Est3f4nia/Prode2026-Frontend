@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from './AuthContext'
 import { useState } from 'react'
-import { 
-  Trophy, Clock, CheckCircle2, XCircle, Edit3, 
-  MapPin, Users, Medal, Star, ChevronRight, Lock, LogOut 
+import {
+  Trophy, Clock, CheckCircle2, XCircle, Edit3,
+  MapPin, Users, Medal, Star, ChevronRight, Lock, LogOut
 } from 'lucide-react'
 import './HomePage.css'
 
@@ -203,6 +203,10 @@ export default function HomePage() {
         </div>
         <div className="hp-navbar-right">
           <span className="hp-navbar-user">👤 {user?.email}</span>
+
+          <button className="hp-btn-admin hp-icon-btn" onClick={() => navigate('/pronosticos')}>
+            <Edit3 size={14} /> MIS PRONÓSTICOS
+          </button>
           {user?.rol === 'ADMIN' && (
             <button className="hp-btn-admin hp-icon-btn" onClick={() => navigate('/admin')}>
               <Lock size={14} /> PANEL ADMIN
@@ -219,7 +223,7 @@ export default function HomePage() {
         <div className="hp-hero-glow" />
         <div className="hp-hero-content">
           <img
-           src="/img/logo-mundial-2026.png"
+            src="/img/logo-mundial-2026.png"
             alt="FIFA World Cup 2026"
             className="hp-hero-logo"
           />
@@ -288,7 +292,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="hp-match-time">
-                  <Clock size={10} style={{ display: 'inline', marginRight: '4px' }} /> 
+                  <Clock size={10} style={{ display: 'inline', marginRight: '4px' }} />
                   {formatMatchDate(match.horaInicio)} · {formatMatchTime(match.horaInicio)}
                 </div>
                 {match.estado === 'POR_JUGARSE' && (
@@ -387,9 +391,9 @@ export default function HomePage() {
           </div>
 
           <div className="hp-ball-card">
-            <img 
-              src="/img/balon-oficial.jpg" 
-              alt="Balón del Mundial" 
+            <img
+              src="/img/balon-oficial.jpg"
+              alt="Balón del Mundial"
               className="hp-ball-img"
             />
             <div className="hp-ball-info">

@@ -1,0 +1,268 @@
+/* ═══════════════════════════════════════════════
+   PronosticosPage.css — Prode Mundial 2026
+   ═══════════════════════════════════════════════ */
+
+.pr-root {
+  min-height: 100vh;
+  background: linear-gradient(rgba(10, 14, 26, 0.9), rgba(10, 14, 26, 0.95)), url('/img/fondo-2026.png');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  color: var(--white);
+  font-family: 'Barlow', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.pr-main {
+  flex: 1;
+  padding: 40px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* HEADER DEL PRODE */
+.pr-header {
+  text-align: center;
+  margin-bottom: 40px;
+  animation: fadeUp 0.6s ease-out;
+}
+
+.pr-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(32px, 5vw, 48px);
+  letter-spacing: 4px;
+  color: var(--gold);
+  margin: 12px 0 6px;
+  text-shadow: 0 0 30px rgba(240, 192, 64, 0.2);
+}
+
+.pr-subtitle {
+  font-size: 15px;
+  color: var(--gray);
+}
+
+.pr-subtitle strong {
+  color: var(--white);
+}
+
+/* ALERTAS */
+.pr-alert {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  max-width: 500px;
+  margin: 0 auto 30px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  animation: slide-in 0.3s ease-out;
+}
+
+.pr-alert.success {
+  background: rgba(74, 222, 128, 0.1);
+  border: 1px solid rgba(74, 222, 128, 0.3);
+  color: #4ade80;
+}
+
+.pr-alert.error {
+  background: rgba(232, 0, 29, 0.1);
+  border: 1px solid rgba(232, 0, 29, 0.3);
+  color: #ff4d4d;
+}
+
+/* GRID DE PARTIDOS */
+.pr-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 20px;
+}
+
+/* TARJETAS DE PARTIDOS (Similar a .hp-rule-card) */
+.pr-card {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 20px;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.pr-card:hover:not(.bloqueado) {
+  border-color: rgba(240, 192, 64, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.pr-card.bloqueado {
+  opacity: 0.65;
+  filter: grayscale(0.5);
+  border-color: rgba(255, 255, 255, 0.03);
+}
+
+.pr-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--glass-border);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.pr-fase {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.pr-fecha {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* EQUIPOS E INPUTS */
+.pr-equipos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.pr-equipo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.pr-equipo-right {
+  justify-content: flex-end;
+}
+
+.pr-bandera-wrap {
+  width: 32px;
+  height: 22px;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+  background: var(--dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pr-bandera {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pr-nombre {
+  font-weight: 600;
+  font-size: 14px;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 80px;
+}
+
+.pr-equipo-right .pr-nombre {
+  text-align: right;
+}
+
+.pr-vs {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  color: var(--gray);
+  margin: 0 10px;
+}
+
+.pr-input {
+  width: 42px;
+  height: 42px;
+  text-align: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--glass-border);
+  color: var(--gold);
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.pr-input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 10px rgba(240, 192, 64, 0.2);
+}
+
+.pr-input:disabled {
+  background: rgba(0, 0, 0, 0.2);
+  color: var(--gray);
+  cursor: not-allowed;
+}
+
+/* Chrome, Safari, Edge, Opera HIDE ARROWS */
+.pr-input::-webkit-outer-spin-button,
+.pr-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.pr-input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* FOOTER CARD & BOTONES */
+.pr-card-footer {
+  display: flex;
+  justify-content: center;
+}
+
+.pr-btn-guardar, .pr-btn-bloqueado {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+  transition: all 0.2s;
+}
+
+.pr-btn-guardar {
+  background: rgba(240, 192, 64, 0.12);
+  border: 1px solid rgba(240, 192, 64, 0.5);
+  color: var(--gold);
+  cursor: pointer;
+}
+
+.pr-btn-guardar:hover {
+  background: rgba(240, 192, 64, 0.25);
+  box-shadow: 0 0 12px rgba(240, 192, 64, 0.2);
+}
+
+.pr-btn-bloqueado {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--gray);
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .pr-grid {
+    grid-template-columns: 1fr;
+  }
+}
