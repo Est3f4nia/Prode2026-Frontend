@@ -3,7 +3,7 @@ import { useAuth } from './AuthContext'
 import { useState } from 'react'
 import {
   Trophy, Clock, CheckCircle2, XCircle, Edit3,
-  MapPin, Users, Medal, Star, ChevronRight, Lock, LogOut
+  MapPin, Users, Medal, Star, ChevronRight, Lock, LogOut, TrendingUp
 } from 'lucide-react'
 import './HomePage.css'
 
@@ -206,6 +206,9 @@ export default function HomePage() {
 
           <button className="hp-btn-admin hp-icon-btn" onClick={() => navigate('/pronosticos')}>
             <Edit3 size={14} /> MIS PRONÓSTICOS
+          </button>
+          <button className="hp-btn-admin hp-icon-btn" onClick={() => navigate('/leaderboard')}>
+            <TrendingUp size={14} /> LEADERBOARD
           </button>
           {user?.rol === 'ADMIN' && (
             <button className="hp-btn-admin hp-icon-btn" onClick={() => navigate('/admin')}>
@@ -412,7 +415,7 @@ export default function HomePage() {
                 </div>
               ))}
             </div>
-            <button className="hp-btn-ranking hp-icon-btn">VER RANKING COMPLETO <ChevronRight size={14} /></button>
+            <button className="hp-btn-ranking hp-icon-btn" onClick={() => navigate('/leaderboard')}>VER RANKING COMPLETO <ChevronRight size={14} /></button>
           </div>
 
           <div className="hp-sidebar-facts">

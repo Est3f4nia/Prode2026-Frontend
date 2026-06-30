@@ -166,7 +166,7 @@
   text-align: center;
   color: rgba(255,255,255,0.4);
   font-weight: 700;
-  font-size: 0.8rem;
+  font-size: 0.95rem;
 }
 
 /* Badges de estado */
@@ -196,7 +196,7 @@
   border: 1px solid rgba(255,255,255,0.2);
 }
 
-/* Botón Iniciar */
+/* Botón Iniciar / Modal Trigger */
 .btn-iniciar {
   background: transparent;
   border: 1px solid #70ff9a;
@@ -211,4 +211,81 @@
 .btn-iniciar:hover {
   background: #70ff9a;
   color: #1a3a1a;
+}
+
+/* =========================================
+   ESTILOS DEL MODAL DE RESULTADOS
+   ========================================= */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #1a472a;
+  padding: 30px;
+  border-radius: 12px;
+  border: 2px solid #f0c040;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  color: #fff;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #f0c040;
+  font-size: 0.95rem;
+}
+
+.btn-modal-cancelar {
+  flex: 1;
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-modal-cancelar:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.btn-modal-guardar {
+  flex: 1;
+  background: #f0c040;
+  border: none;
+  color: #1a3a1a;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-modal-guardar:hover {
+  background: #e0b030;
 }

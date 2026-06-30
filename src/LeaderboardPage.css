@@ -1,0 +1,391 @@
+/* ═══════════════════════════════════════════════
+   LeaderboardPage.css — PRODE Ranking 2026
+   ═══════════════════════════════════════════════ */
+
+.lb-root {
+  min-height: 100vh;
+  background: linear-gradient(rgba(10, 14, 26, 0.9), rgba(10, 14, 26, 0.95)), url('/img/fondo-2026.png');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  color: var(--white);
+  font-family: 'Barlow', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.lb-main {
+  flex: 1;
+  padding: 40px 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* HEADER */
+.lb-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  gap: 20px;
+}
+
+.lb-btn-home {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: rgba(240, 192, 64, 0.12);
+  border: 1px solid rgba(240, 192, 64, 0.5);
+  color: var(--gold);
+  border-radius: 8px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.lb-btn-home:hover {
+  background: rgba(240, 192, 64, 0.25);
+  box-shadow: 0 0 12px rgba(240, 192, 64, 0.2);
+}
+
+.lb-titulo-centro {
+  flex: 1;
+  text-align: center;
+}
+
+.lb-titulo-icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+  color: var(--gold);
+}
+
+.lb-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(32px, 5vw, 48px);
+  letter-spacing: 4px;
+  color: var(--gold);
+  margin: 12px 0 6px;
+  text-shadow: 0 0 30px rgba(240, 192, 64, 0.2);
+}
+
+.lb-subtitle {
+  font-size: 15px;
+  color: var(--gray);
+}
+
+.lb-subtitle strong {
+  color: var(--white);
+}
+
+/* ALERTAS */
+.lb-alert {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 600px;
+  margin: 0 auto 30px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  background: rgba(232, 0, 29, 0.1);
+  border: 1px solid rgba(232, 0, 29, 0.3);
+  color: #ff4d4d;
+}
+
+/* LOADING */
+.lb-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  gap: 20px;
+}
+
+.lb-spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(240, 192, 64, 0.2);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.lb-loading p {
+  color: var(--gray);
+  font-size: 16px;
+}
+
+/* EMPTY STATE */
+.lb-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  gap: 20px;
+  color: var(--gray);
+}
+
+.lb-empty svg {
+  opacity: 0.5;
+}
+
+/* CONTAINER */
+.lb-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* TABLA */
+.lb-table-wrapper {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.lb-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.lb-table thead {
+  background: rgba(240, 192, 64, 0.08);
+  border-bottom: 2px solid rgba(240, 192, 64, 0.3);
+}
+
+.lb-table th {
+  padding: 16px;
+  text-align: left;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.lb-table tbody tr {
+  border-bottom: 1px solid var(--glass-border);
+  transition: background-color 0.2s;
+}
+
+.lb-table tbody tr:hover {
+  background: rgba(240, 192, 64, 0.05);
+}
+
+.lb-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.lb-row-actual {
+  background: rgba(240, 192, 64, 0.1);
+  border-left: 4px solid var(--gold);
+}
+
+.lb-row-actual:hover {
+  background: rgba(240, 192, 64, 0.15);
+}
+
+.lb-table td {
+  padding: 14px 16px;
+}
+
+/* COLUMNAS */
+.lb-col-pos {
+  width: 80px;
+}
+
+.lb-col-usuario {
+  flex: 1;
+  min-width: 200px;
+}
+
+.lb-col-puntos {
+  width: 120px;
+  text-align: center;
+}
+
+.lb-col-plenos {
+  width: 120px;
+  text-align: center;
+}
+
+/* POSICIÓN */
+.lb-posicion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.lb-medal {
+  font-size: 24px;
+  display: inline-block;
+  animation: bounce 2s infinite;
+}
+
+.lb-numero {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  color: var(--gold);
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* USUARIO */
+.lb-usuario-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lb-usuario-nombre {
+  font-weight: 600;
+  color: var(--white);
+}
+
+.lb-badge-yo {
+  display: inline-block;
+  padding: 2px 8px;
+  background: rgba(240, 192, 64, 0.2);
+  border: 1px solid rgba(240, 192, 64, 0.5);
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: bold;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+/* PUNTOS Y PLENOS */
+.lb-puntos, .lb-plenos {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--gold);
+  display: inline-block;
+  padding: 4px 12px;
+  background: rgba(240, 192, 64, 0.08);
+  border-radius: 6px;
+  min-width: 50px;
+  text-align: center;
+}
+
+.lb-plenos {
+  color: #4ade80;
+  background: rgba(74, 222, 128, 0.08);
+}
+
+/* INFO */
+.lb-info {
+  text-align: center;
+  padding: 20px;
+  background: rgba(240, 192, 64, 0.05);
+  border: 1px solid rgba(240, 192, 64, 0.2);
+  border-radius: 8px;
+}
+
+.lb-info-text {
+  font-size: 13px;
+  color: var(--gray);
+  margin: 0;
+}
+
+.lb-info-text strong {
+  color: var(--gold);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .lb-header {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .lb-titulo-centro {
+    width: 100%;
+    order: -1;
+  }
+
+  .lb-titulo-icon {
+    margin-bottom: 8px;
+  }
+
+  .lb-titulo-icon svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .lb-title {
+    font-size: 28px;
+  }
+
+  .lb-col-pos,
+  .lb-col-puntos,
+  .lb-col-plenos {
+    font-size: 12px;
+  }
+
+  .lb-table th {
+    font-size: 11px;
+    padding: 12px 8px;
+  }
+
+  .lb-table td {
+    padding: 10px 8px;
+  }
+
+  .lb-usuario-nombre {
+    font-size: 14px;
+  }
+
+  .lb-puntos, .lb-plenos {
+    font-size: 14px;
+    padding: 2px 8px;
+  }
+
+  .lb-medal {
+    font-size: 20px;
+  }
+
+  .lb-numero {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .lb-main {
+    padding: 20px 12px;
+  }
+
+  .lb-col-usuario {
+    min-width: 150px;
+  }
+
+  .lb-subtitle {
+    font-size: 12px;
+  }
+
+  .lb-btn-home {
+    font-size: 10px;
+    padding: 6px 10px;
+  }
+}

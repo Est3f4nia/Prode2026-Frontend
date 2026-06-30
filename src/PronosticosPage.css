@@ -24,9 +24,42 @@
 
 /* HEADER DEL PRODE */
 .pr-header {
-  text-align: center;
   margin-bottom: 40px;
   animation: fadeUp 0.6s ease-out;
+}
+
+.pr-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.pr-titulo-centro {
+  flex: 1;
+  text-align: center;
+}
+
+.pr-btn-home {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: rgba(240, 192, 64, 0.12);
+  border: 1px solid rgba(240, 192, 64, 0.5);
+  color: var(--gold);
+  border-radius: 8px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+}
+
+.pr-btn-home:hover {
+  background: rgba(240, 192, 64, 0.25);
+  box-shadow: 0 0 12px rgba(240, 192, 64, 0.2);
 }
 
 .pr-title {
@@ -74,6 +107,22 @@
   color: #ff4d4d;
 }
 
+/* SECCIONES */
+.pr-section {
+  margin-bottom: 50px;
+}
+
+.pr-section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(20px, 3vw, 28px);
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid rgba(240, 192, 64, 0.3);
+}
+
 /* GRID DE PARTIDOS */
 .pr-grid {
   display: grid;
@@ -100,6 +149,11 @@
   opacity: 0.65;
   filter: grayscale(0.5);
   border-color: rgba(255, 255, 255, 0.03);
+}
+
+.pr-card-finalizado {
+  border-color: rgba(74, 222, 128, 0.2);
+  background: linear-gradient(135deg, var(--glass) 0%, rgba(74, 222, 128, 0.05) 100%);
 }
 
 .pr-card-header {
@@ -222,6 +276,70 @@
   -moz-appearance: textfield;
 }
 
+/* RESULTADO REAL Y PRONÓSTICO */
+.pr-resultado-real {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  color: var(--gold);
+  text-align: center;
+  margin: 0 10px;
+  min-width: 80px;
+}
+
+.pr-pronostico-info {
+  margin: 16px 0;
+  padding: 12px;
+  background: rgba(240, 192, 64, 0.08);
+  border-radius: 8px;
+  border-left: 3px solid rgba(240, 192, 64, 0.4);
+}
+
+.pr-label-pronostico {
+  font-size: 11px;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.pr-pronostico-valor {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  color: var(--gold);
+  font-weight: bold;
+}
+
+.pr-pronostico-valor.sin-pronostico {
+  color: var(--gray);
+  font-style: italic;
+}
+
+.pr-puntos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: rgba(74, 222, 128, 0.12);
+  border-radius: 8px;
+  border-left: 3px solid rgba(74, 222, 128, 0.5);
+  margin-top: 12px;
+}
+
+.pr-puntos-label {
+  font-size: 12px;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.pr-puntos-valor {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  color: #4ade80;
+  font-weight: bold;
+}
+
 /* FOOTER CARD & BOTONES */
 .pr-card-footer {
   display: flex;
@@ -261,8 +379,181 @@
   cursor: not-allowed;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  .pr-header-top {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .pr-btn-home {
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+
+  .pr-titulo-centro {
+    width: 100%;
+    order: -1;
+  }
+
   .pr-grid {
     grid-template-columns: 1fr;
   }
+
+  .pr-resultado-real {
+    font-size: 28px;
+    margin: 0 8px;
+    min-width: 70px;
+  }
+}
+/* ═══════════════════════════════════════════════
+   PANEL DE HISTORIAL
+   ═══════════════════════════════════════════════ */
+
+.pr-historial-btns {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.pr-historial-toggle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex: 1;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  color: var(--gray);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pr-historial-toggle:hover {
+  background: rgba(240, 192, 64, 0.08);
+  border-color: rgba(240, 192, 64, 0.2);
+  color: var(--gold);
+}
+
+.pr-historial-toggle.activo {
+  background: rgba(240, 192, 64, 0.1);
+  border-color: rgba(240, 192, 64, 0.4);
+  color: var(--gold);
+}
+
+.pr-historial-panel {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(240, 192, 64, 0.15);
+  border-radius: 8px;
+  padding: 14px;
+  margin-bottom: 14px;
+  animation: fadeUp 0.2s ease-out;
+}
+
+.pr-historial-titulo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+
+.pr-historial-cargando,
+.pr-historial-vacio {
+  font-size: 12px;
+  color: var(--gray);
+  text-align: center;
+  padding: 8px 0;
+  font-style: italic;
+}
+
+.pr-historial-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.pr-historial-lista::-webkit-scrollbar {
+  width: 4px;
+}
+
+.pr-historial-lista::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 2px;
+}
+
+.pr-historial-lista::-webkit-scrollbar-thumb {
+  background: rgba(240, 192, 64, 0.3);
+  border-radius: 2px;
+}
+
+.pr-historial-item {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.pr-hist-equipo {
+  color: #ccc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pr-hist-equipo-right {
+  text-align: right;
+}
+
+.pr-hist-marcador {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 15px;
+  color: var(--white);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.pr-hist-badge {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pr-hist-badge--local {
+  background: rgba(74, 222, 128, 0.2);
+  color: #4ade80;
+}
+
+.pr-hist-badge--visitante {
+  background: rgba(232, 0, 29, 0.2);
+  color: #ff6b6b;
+}
+
+.pr-hist-badge--empate {
+  background: rgba(240, 192, 64, 0.2);
+  color: var(--gold);
 }

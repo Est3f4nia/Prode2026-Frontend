@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getEquipos, getFechas, getPartidos, createPartido, updatePartido } from "../api";
+import { getEquipos, getFechas, getPartidos, createPartido, updatePartido, cargarResultadoPartido } from "../api";
 import { useNavigate } from "react-router-dom";
 import "./PartidosAdminPage.css";
 
@@ -25,6 +25,12 @@ export default function PartidosAdminPage() {
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  // Estados para el Modal de Resultados
+  const [modalAbierto, setModalAbierto] = useState(false);
+  const [partidoActivo, setPartidoActivo] = useState(null);
+  const [golesLocal, setGolesLocal] = useState("");
+  const [golesVisitante, setGolesVisitante] = useState("");
 
   useEffect(() => {
     cargarTodo();
@@ -66,7 +72,6 @@ export default function PartidosAdminPage() {
 
     setLoading(true);
     try {
-      // datetime-local devuelve hora local sin zona; lo convertimos a UTC (ISO) para el backend
       const fechaHoraUTC = new Date(form.fechaHoraInicio).toISOString();
 
       await createPartido({
@@ -104,6 +109,38 @@ export default function PartidosAdminPage() {
     }
   };
 
+  // Funciones del Modal de Resultados
+  const abrirModal = (partido) => {
+    setPartidoActivo(partido);
+    setGolesLocal(partido.golesLocal ?? "");
+    setGolesVisitante(partido.golesVisitante ?? "");
+    setModalAbierto(true);
+  };
+
+  const cerrarModal = () => {
+    setModalAbierto(false);
+    setPartidoActivo(null);
+    setGolesLocal("");
+    setGolesVisitante("");
+  };
+
+  const handleGuardarResultado = async (e) => {
+    e.preventDefault();
+    try {
+      await cargarResultadoPartido(partidoActivo.id, {
+        golesLocal: Number(golesLocal),
+        golesVisitante: Number(golesVisitante),
+      });
+      setSuccess("¡Resultado cargado exitosamente!");
+      cerrarModal();
+      cargarTodo(); // Recargar la tabla automáticamente
+    } catch (err) {
+      const detail = err?.response?.data?.detail || err?.response?.data?.message;
+      setError(detail || "Error al cargar el resultado del partido.");
+      cerrarModal();
+    }
+  };
+
   const formatFecha = (iso) => {
     if (!iso) return "-";
     return new Date(iso).toLocaleString("es-AR", {
@@ -131,55 +168,28 @@ export default function PartidosAdminPage() {
       <div className="admin-card">
         <h2 className="card-title">➕ Nuevo Partido</h2>
         <form onSubmit={handleCrear} className="partido-form">
-          <select
-            name="fechaId"
-            value={form.fechaId}
-            onChange={handleChange}
-            className="input-field"
-          >
+          <select name="fechaId" value={form.fechaId} onChange={handleChange} className="input-field">
             <option value="">Fecha / Jornada *</option>
             {fechas.map((f) => (
-              <option key={f.id} value={f.id}>
-                {f.nombre}
-              </option>
+              <option key={f.id} value={f.id}>{f.nombre}</option>
             ))}
           </select>
 
-          <select
-            name="equipoLocalId"
-            value={form.equipoLocalId}
-            onChange={handleChange}
-            className="input-field"
-          >
+          <select name="equipoLocalId" value={form.equipoLocalId} onChange={handleChange} className="input-field">
             <option value="">Equipo Local *</option>
             {equipos.map((eq) => (
-              <option key={eq.id} value={eq.id}>
-                {eq.nombre}
-              </option>
+              <option key={eq.id} value={eq.id}>{eq.nombre}</option>
             ))}
           </select>
 
-          <select
-            name="equipoVisitanteId"
-            value={form.equipoVisitanteId}
-            onChange={handleChange}
-            className="input-field"
-          >
+          <select name="equipoVisitanteId" value={form.equipoVisitanteId} onChange={handleChange} className="input-field">
             <option value="">Equipo Visitante *</option>
             {equipos.map((eq) => (
-              <option key={eq.id} value={eq.id}>
-                {eq.nombre}
-              </option>
+              <option key={eq.id} value={eq.id}>{eq.nombre}</option>
             ))}
           </select>
 
-          <input
-            type="datetime-local"
-            name="fechaHoraInicio"
-            value={form.fechaHoraInicio}
-            onChange={handleChange}
-            className="input-field"
-          />
+          <input type="datetime-local" name="fechaHoraInicio" value={form.fechaHoraInicio} onChange={handleChange} className="input-field" />
 
           <button type="submit" className="btn-crear" disabled={loading}>
             {loading ? "Creando..." : "Crear Partido"}
@@ -201,7 +211,7 @@ export default function PartidosAdminPage() {
               <tr>
                 <th>#</th>
                 <th>Fecha/Jornada</th>
-                <th>Local</th>
+                <th style={{textAlign: 'right'}}>Local</th>
                 <th></th>
                 <th>Visitante</th>
                 <th>Inicio</th>
@@ -214,8 +224,12 @@ export default function PartidosAdminPage() {
                 <tr key={p.id}>
                   <td>{p.id}</td>
                   <td>{p.fechaNombre}</td>
-                  <td>{p.equipoLocalNombre}</td>
-                  <td className="vs-cell">vs</td>
+                  <td style={{textAlign: 'right'}}>{p.equipoLocalNombre}</td>
+                  <td className="vs-cell">
+                    {p.golesLocal !== null && p.golesVisitante !== null 
+                      ? `${p.golesLocal} - ${p.golesVisitante}` 
+                      : "vs"}
+                  </td>
                   <td>{p.equipoVisitanteNombre}</td>
                   <td>{formatFecha(p.fechaHoraInicio)}</td>
                   <td>
@@ -224,12 +238,18 @@ export default function PartidosAdminPage() {
                     </span>
                   </td>
                   <td>
-                    {p.estado === "POR_JUGARSE" ? (
+                    {p.estado === "POR_JUGARSE" && (
                       <button className="btn-iniciar" onClick={() => handleIniciar(p)}>
                         ▶ Iniciar
                       </button>
-                    ) : (
-                      <span className="msg-vacio">—</span>
+                    )}
+                    {p.estado === "EN_JUEGO" && (
+                      <button className="btn-iniciar" onClick={() => abrirModal(p)} style={{ background: '#f0c040', color: '#1a3a1a', borderColor: '#f0c040' }}>
+                        ⚽ Cargar Resultado
+                      </button>
+                    )}
+                    {p.estado === "FINALIZADO" && (
+                      <span className="msg-vacio">FINALIZADO</span>
                     )}
                   </td>
                 </tr>
@@ -238,6 +258,53 @@ export default function PartidosAdminPage() {
           </table>
         )}
       </div>
+
+      {/* MODAL DE RESULTADOS */}
+      {modalAbierto && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h3>Cargar Resultado</h3>
+            <p style={{ textAlign: "center", marginBottom: "20px", color: "#f0c040", fontWeight: "bold" }}>
+              {partidoActivo?.equipoLocalNombre} vs {partidoActivo?.equipoVisitanteNombre}
+            </p>
+            <form onSubmit={handleGuardarResultado}>
+              <div className="form-group">
+                <label>Goles {partidoActivo?.equipoLocalNombre}</label>
+                <input
+                  type="number"
+                  min="0"
+                  required
+                  value={golesLocal}
+                  onChange={(e) => setGolesLocal(e.target.value)}
+                  className="input-field"
+                  style={{ width: '100%', boxSizing: 'border-box' }}
+                />
+              </div>
+              <div className="form-group">
+                <label>Goles {partidoActivo?.equipoVisitanteNombre}</label>
+                <input
+                  type="number"
+                  min="0"
+                  required
+                  value={golesVisitante}
+                  onChange={(e) => setGolesVisitante(e.target.value)}
+                  className="input-field"
+                  style={{ width: '100%', boxSizing: 'border-box' }}
+                />
+              </div>
+              <div style={{ display: "flex", gap: "10px", marginTop: "25px" }}>
+                <button type="button" onClick={cerrarModal} className="btn-modal-cancelar">
+                  Cancelar
+                </button>
+                <button type="submit" className="btn-modal-guardar">
+                  Guardar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
