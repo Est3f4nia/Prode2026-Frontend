@@ -1,16 +1,103 @@
-# React + Vite
+<div align="center">
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Prode 2026 - Frontend
 
-Currently, two official plugins are available:
+**Frontend del Trabajo Práctico Integrador de Programación IV**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+</div>
 
-## React Compiler
+Interfaz moderna para una aplicación de pronósticos deportivos (Prode).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**[Ver Backend](https://github.com/Est3f4nia/Prode2026)**
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tecnologías utilizadas
+
+- **React 18** + **Vite**
+- **JavaScript (ES6+)**
+- **CSS3** (con archivos por componente)
+- **Axios** para consumo de API
+- **React Context API** (para autenticación)
+- **JWT** (almacenado en localStorage)
+
+---
+
+## Funcionalidades principales
+
+- Registro y Login de usuarios
+- Página principal con información del torneo
+- Carga y envío de pronósticos por fecha
+- Tabla de posiciones / Leaderboard
+- Diseño responsive
+- Protección de endpoints
+- Admin dashboard
+
+---
+
+## Estructura del proyecto
+
+```
+# Refactorización en proceso
+```
+
+---
+
+## Ejecución
+
+### Requisitos
+- Node.js (v18 o superior)
+- Backend corriendo (no es necesario, pero se recomienda para probar funcionalidades)
+
+### Instalación
+
+```bash
+npm install
+```
+
+### Configuración
+Asegúrate que el archivo `src/api.js` apunte a la URL correcta del backend:
+
+```js
+const API_URL = 'http://localhost:8080/api';
+```
+
+### Ejecutar
+
+```bash
+npm run dev
+```
+
+La aplicación estará disponible en: `http://localhost:5173`
+
+---
+
+## Endpoints
+
+El frontend se comunica con el backend en las siguientes rutas principales:
+
+- `POST /api/auth/register`
+- `POST /api/auth/login`
+- `GET /api/equipos`
+- `GET /api/partidos`
+- `GET /api/pronosticos`
+- `POST /api/pronosticos`
+- `GET /api/posiciones`
+
+---
+
+## Notas importantes
+
+- La autenticación se realiza mediante **JWT** almacenado en `localStorage` (solución implementada bajo presión de tiempo).
+- Se utiliza **Context API** para manejar el estado de usuario logueado.
+- El diseño es responsive y prioriza buena UX en dispositivos móviles.
+
+---
+
+## Documentación adicional
+
+- [Backend del proyecto](https://github.com/Est3f4nia/Prode2026)
+
+---
+
+**Proyecto realizado en equipo**
