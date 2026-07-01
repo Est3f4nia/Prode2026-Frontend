@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { getEquipos, createEquipo, deleteEquipo } from "../api";
 import { useNavigate } from "react-router-dom";
-import "./EquiposAdminPage.css";
+import "./styles/EquiposAdminPage.css";
+import { getEquipos, createEquipo, deleteEquipo } from "../config/api";
+
 
 export default function EquiposAdminPage() {
   const [equipos, setEquipos] = useState([]);

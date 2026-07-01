@@ -10,7 +10,7 @@
 /* ===== LEFT PANEL (Fondo Mundialista) ===== */
 .auth-left {
   position: relative;
-  background-image: url('./assets/fondo-2026.png');
+  background-image: url('../assets/fondo-2026.png');
   background-size: cover;
   background-position: center;
   display: flex;

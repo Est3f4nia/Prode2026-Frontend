@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import { useAuth } from './AuthContext'
-import { authService } from './api'
-import AuthLeft from './AuthLeft'
-import './auth.css'
+import { useAuth } from '../config/auth/AuthContext'
+import { authService } from '../config/api'
+import AuthLeft from './styles/AuthLeft'
+import '../login/styles/auth.css'
 
 export default function LoginPage() {
   const navigate = useNavigate()

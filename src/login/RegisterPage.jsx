@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import { useAuth } from './AuthContext'
-import { authService } from './api'
-import AuthLeft from './AuthLeft'
-import './auth.css'
+import { useAuth } from '../config/auth/AuthContext'
+import { authService } from '../config/api'
+import AuthLeft from './styles/AuthLeft'
+import '../login/styles/auth.css'
 
 export default function RegisterPage() {
   const navigate = useNavigate()
@@ -20,7 +20,7 @@ export default function RegisterPage() {
     if (!form.email)          e.email    = 'El email es requerido'
     else if (!/\S+@\S+\.\S+/.test(form.email)) e.email = 'Email inválido'
     if (!form.password)       e.password = 'La contraseña es requerida'
-    else if (form.password.length < 6) e.password = 'Mínimo 6 caracteres'
+    else if (form.password.length < 8) e.password = 'Mínimo 6 caracteres'
     if (form.password !== form.confirm)  e.confirm = 'Las contraseñas no coinciden'
     return e
   }
@@ -47,7 +47,7 @@ export default function RegisterPage() {
       login(data)
       navigate('/home')
     } catch (err) {
-      console.error("El error real atrapado es:", err);
+      //console.error("El error real atrapado es:", err);
       const msg = err.response?.data?.message || 'Error al registrar el usuario'
       setAlert({ type: 'error', text: msg })
     } finally {

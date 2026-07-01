@@ -1,14 +1,15 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { AuthProvider, useAuth } from './AuthContext'
-import LoginPage    from './LoginPage'
-import RegisterPage from './RegisterPage'
-import HomePage     from './HomePage'
-import EquiposAdminPage from "./admin/EquiposAdminPage";
-import FechasAdminPage from "./admin/FechasAdminPage";
-import PartidosAdminPage from "./admin/PartidosAdminPage";
-import AdminHomePage from "./admin/AdminHomePage";
-import PronosticosPage from './PronosticosPage';
-import LeaderboardPage from './LeaderboardPage';
+import { AuthProvider, useAuth } from './auth/AuthContext'
+import LoginPage from '../login/LoginPage'
+import RegisterPage from '../login/RegisterPage'
+import HomePage from '../main/HomePage'
+import EquiposAdminPage from "../admin/EquiposAdminPage";
+import FechasAdminPage from "../admin/FechasAdminPage";
+import PartidosAdminPage from "../admin/PartidosAdminPage";
+import AdminHomePage from "../admin/AdminHomePage";
+import PronosticosPage from '../main/PronosticosPage';
+import LeaderboardPage from '../main/LeaderboardPage';
+
 
 function ProtectedRoute({ children }) {
   const { user } = useAuth()

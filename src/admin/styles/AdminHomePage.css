@@ -1,16 +1,23 @@
+.admin-home,
+.admin-home * {
+  box-sizing: border-box;
+}
+
 .admin-home {
   min-height: 100vh;
+  width: 100%;
   background: linear-gradient(135deg, #1a472a 0%, #2d5a27 50%, #1a3a1a 100%);
   padding: 28px 32px;
   font-family: 'Segoe UI', sans-serif;
   color: #fff;
+  overflow-x: hidden;
 }
 
 /* Header */
 .admin-home-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 24px;
   flex-wrap: wrap;
   gap: 16px;
@@ -20,6 +27,8 @@
   display: flex;
   align-items: center;
   gap: 16px;
+  flex: 1;
+  min-width: 0;
 }
 
 .admin-home-logo {
@@ -32,6 +41,7 @@
   font-weight: 700;
   color: #f0c040;
   margin: 0;
+  line-height: 1.2;
   text-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
 
@@ -50,6 +60,8 @@
   display: flex;
   gap: 12px;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .btn-ir-home {
@@ -100,9 +112,10 @@
 /* Grid de cards */
 .admin-home-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 24px;
-  max-width: 1000px;
+  width: 100%;
+  max-width: 1100px;
 }
 
 .admin-home-card {
@@ -116,7 +129,9 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: space-between;
   gap: 12px;
+  min-height: 240px;
 }
 
 .admin-home-card:hover {
@@ -157,8 +172,34 @@
   cursor: pointer;
   transition: background 0.2s;
   pointer-events: none; /* el click lo maneja la card entera */
+  align-self: flex-start;
 }
 
 .admin-home-card:hover .card-btn {
   background: #e0b030;
+}
+
+@media (max-width: 768px) {
+  .admin-home {
+    padding: 20px 16px;
+  }
+
+  .admin-home-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .admin-home-header-right {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .admin-home-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-home-card {
+    min-height: auto;
+    padding: 24px 20px;
+  }
 }

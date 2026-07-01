@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from './AuthContext'
 import { useState } from 'react'
 import {
   Trophy, Clock, CheckCircle2, XCircle, Edit3,
   MapPin, Users, Medal, Star, ChevronRight, Lock, LogOut, TrendingUp
 } from 'lucide-react'
-import './HomePage.css'
+import './styles/HomePage.css'
+import { useAuth } from '../config/auth/AuthContext'
 
 const mockMatches = [
   {
@@ -194,7 +194,7 @@ export default function HomePage() {
       <nav className="hp-navbar">
         <div className="hp-navbar-left">
           <img
-            src="/img/logo-fifa.png"
+            src="/img/logo-mundial-2026.svg"
             alt="FIFA Logo"
             className="hp-navbar-logo"
             onError={(e) => { e.target.style.display = 'none' }}

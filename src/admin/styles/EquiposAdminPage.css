@@ -1,22 +1,35 @@
+/* Fondo mundialista */
+.admin-page,
+.admin-page * {
+  box-sizing: border-box;
+}
+
 .admin-page {
   min-height: 100vh;
+  width: 100%;
   background: linear-gradient(135deg, #1a472a 0%, #2d5a27 50%, #1a3a1a 100%);
   padding: 24px;
   font-family: 'Segoe UI', sans-serif;
   color: #fff;
+  overflow-x: hidden;
 }
 
+/* Header */
 .admin-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 28px;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .admin-header-left {
   display: flex;
   align-items: center;
   gap: 14px;
+  flex: 1;
+  min-width: 0;
 }
 
 .admin-logo {
@@ -30,6 +43,7 @@
   color: #f0c040;
   text-shadow: 0 2px 8px rgba(0,0,0,0.4);
   margin: 0;
+  line-height: 1.2;
 }
 
 .btn-volver {
@@ -48,6 +62,7 @@
   color: #1a3a1a;
 }
 
+/* Cards */
 .admin-card {
   background: rgba(255, 255, 255, 0.07);
   border: 1px solid rgba(240, 192, 64, 0.3);
@@ -55,6 +70,7 @@
   padding: 24px;
   margin-bottom: 24px;
   backdrop-filter: blur(6px);
+  overflow-x: auto;
 }
 
 .card-title {
@@ -65,15 +81,16 @@
 }
 
 /* Formulario */
-.partido-form {
+.equipo-form {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
   align-items: flex-end;
+  width: 100%;
 }
 
 .input-field {
-  flex: 1;
+  flex: 1 1 220px;
   min-width: 180px;
   padding: 10px 14px;
   border-radius: 8px;
@@ -83,10 +100,6 @@
   font-size: 0.95rem;
   outline: none;
   transition: border 0.2s;
-}
-
-.input-field option {
-  color: #1a3a1a;
 }
 
 .input-field::placeholder {
@@ -138,69 +151,46 @@
 }
 
 /* Tabla */
-.partidos-tabla {
+.equipos-tabla {
   width: 100%;
+  min-width: 640px;
   border-collapse: collapse;
-  font-size: 0.92rem;
+  font-size: 0.95rem;
 }
 
-.partidos-tabla th {
+.equipos-tabla th {
   text-align: left;
-  padding: 10px 12px;
+  padding: 10px 14px;
   color: #f0c040;
   border-bottom: 2px solid rgba(240,192,64,0.4);
   font-weight: 600;
 }
 
-.partidos-tabla td {
-  padding: 10px 12px;
+.equipos-tabla td {
+  padding: 10px 14px;
   border-bottom: 1px solid rgba(255,255,255,0.08);
   vertical-align: middle;
 }
 
-.partidos-tabla tr:hover td {
+.equipos-tabla tr:hover td {
   background: rgba(255,255,255,0.05);
 }
 
-.vs-cell {
-  text-align: center;
-  color: rgba(255,255,255,0.4);
-  font-weight: 700;
-  font-size: 0.95rem;
+.escudo-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 4px;
 }
 
-/* Badges de estado */
-.badge-estado {
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  white-space: nowrap;
+.sin-escudo {
+  font-size: 1.4rem;
 }
 
-.badge-por_jugarse {
-  background: rgba(240, 192, 64, 0.15);
-  color: #f0c040;
-  border: 1px solid rgba(240, 192, 64, 0.4);
-}
-
-.badge-en_juego {
-  background: rgba(112, 255, 154, 0.15);
-  color: #70ff9a;
-  border: 1px solid rgba(112, 255, 154, 0.4);
-}
-
-.badge-finalizado {
-  background: rgba(255, 255, 255, 0.1);
-  color: rgba(255,255,255,0.6);
-  border: 1px solid rgba(255,255,255,0.2);
-}
-
-/* Botón Iniciar / Modal Trigger */
-.btn-iniciar {
+.btn-eliminar {
   background: transparent;
-  border: 1px solid #70ff9a;
-  color: #70ff9a;
+  border: 1px solid #ff6b6b;
+  color: #ff6b6b;
   padding: 5px 12px;
   border-radius: 6px;
   cursor: pointer;
@@ -208,84 +198,31 @@
   transition: all 0.2s;
 }
 
-.btn-iniciar:hover {
-  background: #70ff9a;
-  color: #1a3a1a;
-}
-
-/* =========================================
-   ESTILOS DEL MODAL DE RESULTADOS
-   ========================================= */
-.modal-overlay {
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(4px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.modal-content {
-  background: #1a472a;
-  padding: 30px;
-  border-radius: 12px;
-  border: 2px solid #f0c040;
-  width: 90%;
-  max-width: 400px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-}
-
-.modal-content h3 {
-  margin-top: 0;
+.btn-eliminar:hover {
+  background: #ff6b6b;
   color: #fff;
-  text-align: center;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  padding-bottom: 15px;
-  margin-bottom: 20px;
 }
 
-.form-group {
-  margin-bottom: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+@media (max-width: 768px) {
+  .admin-page {
+    padding: 16px;
+  }
 
-.form-group label {
-  font-weight: 600;
-  color: #f0c040;
-  font-size: 0.95rem;
-}
+  .admin-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-.btn-modal-cancelar {
-  flex: 1;
-  background: transparent;
-  border: 1px solid #fff;
-  color: #fff;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
+  .admin-card {
+    padding: 18px;
+  }
 
-.btn-modal-cancelar:hover {
-  background: rgba(255,255,255,0.1);
-}
+  .equipo-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-.btn-modal-guardar {
-  flex: 1;
-  background: #f0c040;
-  border: none;
-  color: #1a3a1a;
-  padding: 10px;
-  border-radius: 5px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.btn-modal-guardar:hover {
-  background: #e0b030;
+  .btn-crear {
+    width: 100%;
+  }
 }

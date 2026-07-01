@@ -12,13 +12,12 @@ api.interceptors.request.use((config) => {
   return config
 })
 
+
 // ── Auth ─────────────────────────────────────────────────────
 export const authService = {
   register: (data) => api.post('/auth/register', data),
   login:    (data) => api.post('/auth/login', data),
 }
-
-
 
 // ── Equipos ──────────────────────────────────────────────────
 export const getEquipos    = ()     => api.get('/equipos')

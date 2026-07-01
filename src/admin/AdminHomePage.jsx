@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../AuthContext";
-import "./AdminHomePage.css";
+import { useAuth } from "../config/auth/AuthContext";
+import "./styles/AdminHomePage.css";
 
 const CARDS = [
   {

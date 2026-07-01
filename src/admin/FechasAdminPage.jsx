@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { getFechas, createFecha } from "../api";
+import { getFechas, createFecha } from "../config/api";
 import { useNavigate } from "react-router-dom";
-import "./FechasAdminPage.css";
+import "./styles/FechasAdminPage.css";
 
 const ESTADO_LABEL = {
   PROGRAMADA: "🕒 Programada",

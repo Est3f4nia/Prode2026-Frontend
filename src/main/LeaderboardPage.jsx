@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useAuth } from './AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { Home, Trophy, Users } from 'lucide-react';
-import './LeaderboardPage.css';
+import './styles/LeaderboardPage.css';
+import { useAuth } from '../config/auth/AuthContext';
 
 const api = axios.create({ baseURL: 'http://localhost:8080/api' });
 

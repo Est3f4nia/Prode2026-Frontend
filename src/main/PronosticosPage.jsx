@@ -1,10 +1,11 @@
 import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import { useAuth } from './AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { Edit3, Save, X, Lock, CheckCircle, Home, ChevronDown, ChevronUp } from 'lucide-react';
-import { getHistorialEquipo } from './api';
-import './PronosticosPage.css';
+import { useAuth } from '../config/auth/AuthContext';
+import { getHistorialEquipo } from '../config/api';
+import './styles/PronosticosPage.css';
+
 
 export default function PronosticosPage() {
     const { user, token } = useAuth();

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { getEquipos, getFechas, getPartidos, createPartido, updatePartido, cargarResultadoPartido } from "../api";
+import { getEquipos, getFechas, getPartidos, createPartido, updatePartido, cargarResultadoPartido } from "../config/api";
 import { useNavigate } from "react-router-dom";
-import "./PartidosAdminPage.css";
+import "./styles/PartidosAdminPage.css";
 
 const ESTADO_LABEL = {
   POR_JUGARSE: "🕒 Por jugarse",
